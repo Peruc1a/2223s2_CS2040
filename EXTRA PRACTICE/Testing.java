@@ -1,19 +1,24 @@
-import java.util.*;
-import java.io.*;
+//import java.util.*;
 
-public class Testing {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] word = br.readLine().split(";");
-        int sum = 0;
-        for (String i : word) {
-            if (i.contains("-")) {
-                String[] a = i.split("-");
-                sum += Integer.parseInt(a[1]) - Integer.parseInt(a[0]) + 1;
-                continue;
-            }
-            sum++;
-        }
-        System.out.println(sum);
+class TestClass {
+    public int num1;
+    public int num2;
+    public TestClass (int a, int b) {
+        this.num1 = a;
+        this.num2 = b;
+    }
+    public int getNum() {
+        return this.num2;
     }
 }
+public class Testing {
+    public static void main(String[] args) {
+        TestClass x = new TestClass(123, 456);
+        //Valid operations
+        System.out.println(x.num1); //prints 123
+        System.out.println(x.getNum()); //prints 456
+        //Invalid operations
+        System.out.println(x.num2); //compile error
+    }
+}
+
