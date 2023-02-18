@@ -1,8 +1,9 @@
+import java.util.List;
+
 class BasicLinkedList implements ListInterface {
     public ListNode head;
     public int num_nodes;
 
-    //Interface methods
     public boolean isEmpty() {
         return (num_nodes == 0);
     }
@@ -12,30 +13,28 @@ class BasicLinkedList implements ListInterface {
     }
 
     public int indexOf(int item) {
-        int index = 0;
+        int counter = 0;
         for (ListNode cur = head; cur != null; cur = cur.getNext()) {
-            if (cur.getItem() == item) 
-                return index;
-            else 
-                index++;
+            if (cur.getItem() == item) return counter; else counter++;
         }
         return -1;
     }
 
     public boolean contains(int item) {
-        if (indexOf(item) != -1) return true; else return false;
+        return (indexOf(item) != -1);
     }
 
     public int getItemAtIndex(int index) {
         int counter = 0;
         int item = 0;
-        if (index < 0 || index > num_nodes) {
+        if (index < 0 || index >= size()) {
             System.out.println("Invalid Index");
             System.exit(1);
         }
         for (ListNode cur = head; cur != null; cur = cur.getNext(), counter++) {
             if (counter == index) {
                 item = cur.getItem();
+                break; 
             }
         }
         return item;
@@ -46,21 +45,24 @@ class BasicLinkedList implements ListInterface {
     }
 
     public int getLast() {
-
-        return getItemAtIndex(num_nodes-1);
+        return getItemAtIndex(size()-1);
     }
 
     public void addAtIndex(int index, int item) {
-        ListNode newNode = new ListNode(item);
-        if (index < 0 || index > num_nodes) {
-            System.out.println("Invalid Index");
-            System.exit(1);
-        }
-        if (index == 0) {
-            insert(null, newNode);
+        ListNode cur;
+        ListNode node = new ListNode(item);
+        if (index >= 0 && index <= size()) {
+            if (index == 0) {
+                insert(null,node);
+            }
+            else {
+                cur = getNodeAtIndex(index-1);
+                insert(cur,node);
+            }
         }
         else {
-            insert(getNodeAtIndex(index-1),newNode);
+            System.out.println("Invalid Index");
+            System.exit(1);
         }
     }
 
@@ -69,24 +71,26 @@ class BasicLinkedList implements ListInterface {
     }
 
     public void addBack(int item) {
-        addAtIndex(num_nodes, item);
+        addAtIndex(size(), item);
     }
 
     public int removeAtIndex(int index) {
-        int item = 0;
-        if (index >= 0 && index < num_nodes) {
+        ListNode cur;
+        int value = 0;
+        if (index >= 0 || index < size()) {
             if (index == 0) {
-                item = remove(null);
+                value = remove(null);
             }
             else {
-                item = remove(getNodeAtIndex(index-1));
+                cur = getNodeAtIndex(index-1);
+                value = remove(cur);
             }
         }
         else {
             System.out.println("Invalid index or empty list");
             System.exit(1);
         }
-        return item;
+        return value;
     }
 
     public int removeFront() {
@@ -94,7 +98,7 @@ class BasicLinkedList implements ListInterface {
     }
 
     public int removeBack() {
-        return removeAtIndex(num_nodes-1);
+        return removeAtIndex(size()-1);
     }
 
     public void print() {
@@ -109,12 +113,12 @@ class BasicLinkedList implements ListInterface {
             }
             System.out.println(".");
         }
-    }
+      }
 
     public void insert(ListNode cur, ListNode n) {
         if (cur == null) {
-            n.setNext(head.getNext());
-            head= n;
+            n.setNext(head);
+            head = n;
         }
         else {
             n.setNext(cur.getNext());
@@ -123,6 +127,24 @@ class BasicLinkedList implements ListInterface {
         num_nodes++;
     }
 
+    public ListNode getNodeAtIndex(int index) {
+        ListNode node = null;
+        int counter = 0;
+        if (index < 0 || index >= size()) {
+            System.out.println("Invalid Index");
+            System.exit(1);
+        }
+        for (ListNode cur = head; cur != null; cur = cur.getNext()) {
+            if (counter == index) {
+                node = cur;
+                break;
+            }
+            counter++;
+        }
+        return node;
+    }
+
+    
     public int remove(ListNode cur) {
         int value;
         if (cur == null) {
@@ -136,21 +158,4 @@ class BasicLinkedList implements ListInterface {
         num_nodes--;
         return value;
     }
-
-    public ListNode getNodeAtIndex(int index) {
-        int counter = 0;
-        ListNode res = null;
-        if (index < 0 || index > num_nodes-1) {
-            System.out.println("Invalid Index");
-            System.exit(1);
-        }
-        for (ListNode cur = head; cur != null; cur = cur.getNext(), counter++) {
-            if (counter == index) {
-                res = cur;
-                break;
-            }
-        }
-        return res;
-    }
-
 }
