@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class TestBasicLinkedList {
 	public static void main(String [] args) {
 		BasicLinkedList list = new BasicLinkedList();

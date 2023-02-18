@@ -1,5 +1,3 @@
-import java.util.List;
-
 class BasicLinkedList implements ListInterface {
     public ListNode head;
     public int num_nodes;
