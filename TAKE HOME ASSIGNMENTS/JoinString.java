@@ -2,23 +2,23 @@
 import java.io.*;
 import java.util.*;
 
-class LNode {
-    public LNode next;
+class StringNode {
+    public StringNode next;
     public String item;
-    public LNode(String val, LNode n) {
+    public StringNode(String val, StringNode n) {
         item = val;
         next = n;
     }
 
-    public LNode(String item){
+    public StringNode(String item){
         this(item, null);
     }
 
-    public void setNext(LNode n) {
+    public void setNext(StringNode n) {
         next = n;
     }
 
-    public LNode getNext() {
+    public StringNode getNext() {
         return next;
     }
     public String getItem() {
@@ -27,12 +27,12 @@ class LNode {
 }
 
 class TLL {
-    LNode head;
-    LNode tail;
+    StringNode head;
+    StringNode tail;
     int num_items;
 
     public void addFront(String item) {
-        LNode node = new LNode(item);
+        StringNode node = new StringNode(item);
         head = node;
         tail = node;
         num_items++;
@@ -60,7 +60,7 @@ public class JoinString {
             firstList.tail.setNext(secondList.head);
             firstList.tail = secondList.tail;
         }
-        LNode node = list.get(first).head;
+        StringNode node = list.get(first).head;
         while (node != null) {
             pw.print(node.getItem());
             node = node.getNext();
