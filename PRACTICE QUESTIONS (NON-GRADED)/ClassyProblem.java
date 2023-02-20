@@ -11,7 +11,7 @@ public class ClassyProblem {
             for (int j = 0; j < people; j++) {
                 String name = k.getWord().replace(":", "");
                 String[] ranks = k.getWord().split("-");
-                String extra = k.getWord();
+                k.getWord();
                 arr.add(new Person(name, ranks));
             }
             Collections.sort(arr, new classySort());
