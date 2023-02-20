@@ -1,5 +1,4 @@
 //Davin Chua A0234351N
-import java.io.*;
 
 public class Teque2 {
     public static void main(String[] args) {
