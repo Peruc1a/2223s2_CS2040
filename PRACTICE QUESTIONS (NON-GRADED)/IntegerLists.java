@@ -1,16 +1,14 @@
-import java.util.*;
-
 //Davin Chua A0234351N
+import java.util.*;
 
 public class IntegerLists {
     public static void main(String[] args) {
         Kattio k = new Kattio(System.in, System.out);
         int cases = k.getInt();
         for (int i = 0; i < cases; i++) {
-
             String[] cmds = k.getWord().split("");
             Deque<Integer> dq = new LinkedList<>();
-            int num = k.getInt();
+            k.getInt();
             String temp = k.getWord();
             String[] temp2 = temp.substring(1,temp.length()-1).split(",");
             for (String s : temp2) {
@@ -30,16 +28,12 @@ public class IntegerLists {
                     else dq.removeLast();
                 }
             }
-            if (err) {
-                k.println("error");
-            }
-            else{
+            if (err) k.println("error");
+            else {
                 k.print("[");
                 int sz = dq.size();
                 for (int n = 0; n < sz; n++) {
-                    if (n > 0) {
-                        k.print(",");
-                    }
+                    if (n > 0) k.print(",");
                     if (flag) k.print(dq.removeFirst());
                     else k.print(dq.removeLast());
                 }
