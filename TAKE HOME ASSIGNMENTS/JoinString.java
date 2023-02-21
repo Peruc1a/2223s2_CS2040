@@ -1,5 +1,4 @@
 //Davin Chua A0234351n
-import java.io.*;
 import java.util.*;
 
 class StringNode {
@@ -40,7 +39,7 @@ class TLL {
 }
 
 public class JoinString {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Kattio k = new Kattio(System.in, System.out);
         ArrayList<TLL> list = new ArrayList<>();
         int cases = k.getInt();
