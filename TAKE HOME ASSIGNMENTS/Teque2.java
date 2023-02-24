@@ -4,9 +4,9 @@ public class Teque2 {
     public static void main(String[] args) {
         Kattio in = new Kattio(System.in, System.out);
 
-        int leftStart = 1000000, leftEnd = 1000001, rightStart = 1000000, rightEnd = 1000001;
-        int[] left = new int[2000000];
-        int[] right = new int[2000000];
+        int leftStart = 500000, leftEnd = 500001, rightStart = 500000, rightEnd = 500001;
+        int[] left = new int[1000000];
+        int[] right = new int[1000000];
         int lines = in.getInt();
         for (int i = 0; i < lines; i++) {
             String cmd = in.getWord();
