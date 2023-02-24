@@ -1,63 +1,47 @@
-//Davin Chua A0234351n
-import java.util.*;
+//Davin Chua A0234351N
 
 class StringNode {
     public StringNode next;
+    public StringNode last;
     public String item;
-    public StringNode(String val, StringNode n) {
+    public StringNode(String val, StringNode n, StringNode l) {
         item = val;
         next = n;
+        last = l;
     }
 
-    public StringNode(String item){
-        this(item, null);
-    }
+    public StringNode(String item){ this(item, null, null);}
 
-    public void setNext(StringNode n) {
-        next = n;
-    }
+    public void setNext(StringNode n) { next = n;}
+    public StringNode getNext() { return next;}
 
-    public StringNode getNext() {
-        return next;
-    }
-    public String getItem() {
-        return item;
-    }
-}
+    public void setLast(StringNode n) { last = n;}
+    public StringNode getLast() { return last;}
 
-class TLL {
-    StringNode head;
-    StringNode tail;
-    int num_items;
-
-    public void addFront(String item) {
-        StringNode node = new StringNode(item);
-        head = node;
-        tail = node;
-        num_items++;
-    }
+    public void setItem(String i) { item = i;}
+    public String getItem() { return item;}
 }
 
 public class JoinString {
     public static void main(String[] args) {
         Kattio k = new Kattio(System.in, System.out);
-        ArrayList<TLL> list = new ArrayList<>();
         int cases = k.getInt();
+        StringNode[] lst = new StringNode[cases];
         for (int i = 0; i < cases; i++) {
-            TLL tll = new TLL();
-            tll.addFront(k.getWord());
-            list.add(tll);
+            StringNode n = new StringNode(k.getWord());
+            lst[i] = n;
+            lst[i].setLast(n);
         }
         int first = 0;
         for (int j = 0; j < cases-1; j++) {
             first = k.getInt()-1;
             int second = k.getInt()-1;
-            TLL firstList = list.get(first);
-            TLL secondList = list.get(second);
-            firstList.tail.setNext(secondList.head);
-            firstList.tail = secondList.tail;
+            StringNode cur = lst[first];
+            StringNode next = lst[second];
+            cur.getLast().setNext(next);
+            cur.setLast(next.getLast());
         }
-        StringNode node = list.get(first).head;
+        StringNode node = lst[first];
         while (node != null) {
             k.print(node.getItem());
             node = node.getNext();
