@@ -18,14 +18,14 @@ public class AssigningWorkstations {
         for (Researcher r : arr) {
             int a = r.getArrive();
             while (pq.size() > 0) {
-                int b = pq.peek();
-                if (a < b) break;
-                else if (a-lockTime <= b) {
-                    pq.poll();
-                    counter++;
-                    break;
+                if (a < pq.peek()) break;
+                else {
+                    int b = pq.poll();
+                    if (a - b <= lockTime) {
+                        counter++;
+                        break;
+                    }
                 }
-                else pq.poll();
             }
             pq.add(r.leaveTime());
         }
