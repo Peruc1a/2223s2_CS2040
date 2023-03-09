@@ -12,7 +12,7 @@ public class AssigningWorkstations {
         ArrayList<Researcher> arr = new ArrayList<Researcher>();
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
         for (int i = 0; i < rs; i++) {
-            arr.add(new Researcher(k.getInt(), k.getInt()));
+           arr.add(new Researcher(k.getInt(), k.getInt()));
         }
         Collections.sort(arr);
         for (Researcher r : arr) {
@@ -36,12 +36,15 @@ public class AssigningWorkstations {
 class Researcher implements Comparable<Researcher> {
     int arrive;
     int usage;
-    public Researcher(Integer a, Integer s) {
+    public Researcher(int a, int s) {
         arrive = a;
         usage = s;
     }
-    
-    public int compareTo(Researcher a) {return Integer.compare(arrive, a.arrive);}
+    public int compareTo(Researcher a) {
+        if (arrive-a.getArrive() > 0) return 1;
+        else if (arrive-a.getArrive() < 0) return -1;
+        else return 0;
+    }
     public int leaveTime() { return arrive+usage;}
     public int getArrive() { return arrive;}
 }
