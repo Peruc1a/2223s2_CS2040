@@ -3,6 +3,7 @@
 public class AlmostUnionFind {
     public static void main(String[] args) {
         Kattio k = new Kattio(System.in, System.out);
+        StringBuilder sb = new StringBuilder();
         while (k.hasMoreTokens()) {
             int arrSize = k.getInt()+1, cmds = k.getInt();
             AlmostUFDS a = new AlmostUFDS(arrSize);
@@ -11,15 +12,15 @@ public class AlmostUnionFind {
                 if (cmd == 1) a.Union(k.getInt(), k.getInt());
                 else if (cmd == 2) a.Move(k.getInt(), k.getInt());
                 else {
-                    StringBuilder sb = new StringBuilder();
                     int index = k.getInt();
                     sb.append(a.getSize(index));
                     sb.append(" ");
                     sb.append(a.getSum(index));
-                    k.println(sb);
+                    sb.append("\n");
                 }
             }
         }
+        k.print(sb);
         k.flush();
     }
 }
