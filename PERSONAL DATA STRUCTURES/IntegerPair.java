@@ -1,11 +1,8 @@
-public class IntegerPair implements Comparable<IntegerPair> {
-    int v;
-    int w;
+public class IntegerPair {
+    int v1;
+    int v2;
     public IntegerPair(int a, int b) {
-        v = a;
-        w = b;
-    }
-    public int compareTo(IntegerPair a) {
-        return w - a.w;
+        v1 = a;
+        v2 = b;
     }
 }
